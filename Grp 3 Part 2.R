@@ -44,4 +44,60 @@ insurance |>
   ggplot(data = insurance, mapping = aes(x = age, y = charges)) +
   geom_density_2d()
 
+#Average Charges by Age (Trend)
+insurance %>%
+  group_by(age) %>%
+  summarise(avg_charges = mean(charges)) %>%
+  ggplot(aes(x = age, y = avg_charges)) +
+  geom_line() +
+  labs(title = "Average Charges by Age",
+       x = "Age",
+       y = "Average Charges")
+
+#Create BMI Bins
+insurance <- insurance %>%
+  mutate(bmi_category = case_when(
+    bmi < 18.5 ~ "low",
+    bmi >= 18.5 & bmi < 25 ~ "middle",
+    bmi >= 25 & bmi < 30 ~ "high",
+    bmi >= 30 ~ "very high"
+  ))
+
+#People with Low BMI in Each Region
+insurance %>%
+  filter(bmi_category == "low") %>%
+  count(region)
+
+#Average Charges for Each BMI Bin
+insurance %>%
+  group_by(bmi_category) %>%
+  summarise(avg_charges = mean(charges))
+       ggplot(insurance, aes(x = bmi_category, y = charges)) +
+  geom_boxplot() +
+  labs(title = "Charges by BMI Category",
+       x = "BMI Category",
+       y = "Charges")
+
+#Average Charges for Each Smoker Status
+insurance %>%
+  group_by(smoker) %>%
+  summarise(avg_charges = mean(charges))
+# Plot
+ggplot(insurance, aes(x = smoker, y = charges)) +
+  geom_boxplot() +
+  labs(title = "Charges by Smoker Status",
+       x = "Smoker",
+       y = "Charges")
+
+#Average Charges for Each Region
+insurance %>%
+  group_by(region) %>%
+  summarise(avg_charges = mean(charges))
+
+# Plot
+ggplot(insurance, aes(x = region, y = charges)) +
+  geom_boxplot() +
+  labs(title = "Charges by Region",
+       x = "Region",
+       y = "Charges") 
 
