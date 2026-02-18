@@ -50,9 +50,7 @@ insurance %>%
   summarise(avg_charges = mean(charges)) %>%
   ggplot(aes(x = age, y = avg_charges)) +
   geom_line() +
-  labs(title = "Average Charges by Age",
-       x = "Age",
-       y = "Average Charges")
+  labs(title = "Average Charges by Age", x = "Age", y = "Average Charges")
 
 #Create BMI Bins
 insurance <- insurance %>%
@@ -74,9 +72,7 @@ insurance %>%
   summarise(avg_charges = mean(charges))
        ggplot(insurance, aes(x = bmi_category, y = charges)) +
   geom_boxplot() +
-  labs(title = "Charges by BMI Category",
-       x = "BMI Category",
-       y = "Charges")
+  labs(title = "Charges by BMI Category", x = "BMI Category", y = "Charges")
 
 #Average Charges for Each Smoker Status
 insurance %>%
@@ -85,9 +81,7 @@ insurance %>%
 # Plot
 ggplot(insurance, aes(x = smoker, y = charges)) +
   geom_boxplot() +
-  labs(title = "Charges by Smoker Status",
-       x = "Smoker",
-       y = "Charges")
+  labs(title = "Charges by Smoker Status", x = "Smoker", y = "Charges")
 
 #Average Charges for Each Region
 insurance %>%
@@ -97,7 +91,5 @@ insurance %>%
 # Plot
 ggplot(insurance, aes(x = region, y = charges)) +
   geom_boxplot() +
-  labs(title = "Charges by Region",
-       x = "Region",
-       y = "Charges") 
+  labs(title = "Charges by Region", x = "Region", y = "Charges") 
 
